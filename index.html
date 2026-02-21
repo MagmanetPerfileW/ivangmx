@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IVANGMX | Oficial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Montserrat', sans-serif;
+    background:#0b0b0b;
+    color:white;
+}
+
+/* ===== PORTADA ===== */
+
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.85)),
+    url('portada.jpg') center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:60px;
+    letter-spacing:6px;
+    font-weight:800;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:18px;
+    opacity:0.9;
+}
+
+.scroll-btn{
+    margin-top:40px;
+    padding:12px 25px;
+    border:2px solid gold;
+    border-radius:30px;
+    color:gold;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.scroll-btn:hover{
+    background:gold;
+    color:black;
+}
+
+/* ===== DATOS + REDES ===== */
+
+.info{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.info h2{
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+.redes a{
+    display:inline-block;
+    margin:10px;
+    padding:12px 25px;
+    background:#151515;
+    border:1px solid gold;
+    color:gold;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.redes a:hover{
+    background:gold;
+    color:black;
+    transform:scale(1.05);
+}
+
+/* ===== EVENTOS ===== */
+
+.eventos{
+    padding:100px 20px;
+    text-align:center;
+    background:
+    linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.9)),
+    url('fiesta.jpg') center/cover no-repeat;
+    opacity:0;
+    transform:translateY(100px);
+    transition:1.2s ease;
+}
+
+.eventos.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.evento-card{
+    background:rgba(0,0,0,0.8);
+    padding:40px;
+    border-radius:20px;
+    max-width:600px;
+    margin:0 auto;
+    box-shadow:0 0 40px rgba(255,215,0,0.2);
+}
+
+.evento-card h3{
+    font-size:30px;
+    color:gold;
+    margin-bottom:15px;
+}
+
+/* ===== COUNTDOWN ===== */
+
+.countdown{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.time-box{
+    background:black;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid gold;
+    min-width:80px;
+}
+
+.time-box span{
+    display:block;
+    font-size:26px;
+    color:gold;
+    font-weight:700;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    padding:40px;
+    text-align:center;
+    font-size:14px;
+    color:#777;
+    background:#000;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== PORTADA ===== -->
+<section class="hero">
+    <h1>IVANGMX</h1>
+    <p>Artista • Productor • Beats</p>
+    <a href="#eventos" class="scroll-btn">Ver Evento</a>
+</section>
+
+<!-- ===== DATOS + REDES ===== -->
+<section class="info">
+    <h2>Sígueme y Escúchame</h2>
+
+    <div class="redes">
+        <a href="https://open.spotify.com/artist/7LHNieTZsGkSF5VSYs3xtY" target="_blank">Spotify</a>
+        <a href="https://music.apple.com/mx/artist/ivangmx/1626780091" target="_blank">Apple Music</a>
+        <a href="https://music.amazon.com.mx/artists/B0B35DJS3M/ivangmx" target="_blank">Amazon Music</a>
+        <a href="https://youtube.com/@ivangmx06" target="_blank">YouTube Oficial</a>
+        <a href="https://www.youtube.com/@prodivangmx" target="_blank">YouTube Beats</a>
+        <a href="https://www.instagram.com/ivansitogg/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@ivannsito_gg" target="_blank">TikTok</a>
+    </div>
+</section>
+
+<!-- ===== EVENTO ===== -->
+<section class="eventos" id="eventos">
+    <div class="evento-card">
+        <h2>Próximo Evento</h2>
+        <h3>7 Marzo 2026</h3>
+        <p><strong>Ciudad:</strong> Monterrey, Nuevo León</p>
+        <p><strong>Lugar:</strong> Barrio Antiguo – Col. Centro, MTY, NL</p>
+
+        <div class="countdown" id="countdown">
+            <div class="time-box">
+                <span id="days">0</span>
+                Días
+            </div>
+            <div class="time-box">
+                <span id="hours">0</span>
+                Horas
+            </div>
+            <div class="time-box">
+                <span id="minutes">0</span>
+                Min
+            </div>
+            <div class="time-box">
+                <span id="seconds">0</span>
+                Seg
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+© 2026 IVANGMX - Sitio Oficial
+</footer>
+
+<script>
+
+/* ===== CUENTA REGRESIVA ===== */
+
+const eventDate = new Date("March 7, 2026 00:00:00").getTime();
+
+const countdownFunction = setInterval(function(){
+
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "¡EL EVENTO YA INICIÓ!";
+    }
+
+}, 1000);
+
+
+/* ===== ANIMACIÓN SCROLL ===== */
+
+const eventos = document.querySelector(".eventos");
+
+function mostrarEvento(){
+    const triggerBottom = window.innerHeight * 0.85;
+    const eventoTop = eventos.getBoundingClientRect().top;
+
+    if(eventoTop < triggerBottom){
+        eventos.classList.add("visible");
+    }
+}
+
+window.addEventListener("scroll", mostrarEvento);
+window.addEventListener("load", mostrarEvento);
+
+</script>
+
+</body>
+</html>
