@@ -110,10 +110,10 @@ body{
 }
 
 .evento-card{
-    background:rgba(0,0,0,0.8);
+    background:rgba(0,0,0,0.85);
     padding:40px;
     border-radius:20px;
-    max-width:600px;
+    max-width:800px;
     margin:0 auto;
     box-shadow:0 0 40px rgba(255,215,0,0.2);
 }
@@ -149,6 +149,41 @@ body{
     font-weight:700;
 }
 
+/* ===== MENSAJE ARTISTA ===== */
+
+.mensaje-artista{
+    margin-top:40px;
+    background:rgba(0,0,0,0.9);
+    padding:30px;
+    border-radius:15px;
+    line-height:1.7;
+}
+
+.mensaje-artista h4{
+    color:gold;
+    margin-bottom:15px;
+}
+
+.link-instagram{
+    color:#ff2e63;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.link-instagram:hover{
+    color:white;
+}
+
+/* ===== MAPA ===== */
+
+.mapa{
+    margin-top:40px;
+}
+
+.mapa iframe{
+    border-radius:15px;
+}
+
 /* ===== FOOTER ===== */
 
 footer{
@@ -163,14 +198,12 @@ footer{
 
 <body>
 
-<!-- ===== PORTADA ===== -->
 <section class="hero">
     <h1>IVANGMX</h1>
     <p>Artista • Productor • Beats</p>
     <a href="#eventos" class="scroll-btn">Ver Evento</a>
 </section>
 
-<!-- ===== DATOS + REDES ===== -->
 <section class="info">
     <h2>Sígueme y Escúchame</h2>
 
@@ -185,32 +218,59 @@ footer{
     </div>
 </section>
 
-<!-- ===== EVENTO ===== -->
 <section class="eventos" id="eventos">
     <div class="evento-card">
         <h2>Próximo Evento</h2>
         <h3>7 Marzo 2026</h3>
         <p><strong>Ciudad:</strong> Monterrey, Nuevo León</p>
-        <p><strong>Lugar:</strong> Barrio Antiguo – Col. Centro, MTY, NL</p>
+        <p><strong>Lugar:</strong> Open Format Restobar – Barrio Antiguo</p>
 
         <div class="countdown" id="countdown">
             <div class="time-box">
-                <span id="days">0</span>
-                Días
+                <span id="days">0</span>Días
             </div>
             <div class="time-box">
-                <span id="hours">0</span>
-                Horas
+                <span id="hours">0</span>Horas
             </div>
             <div class="time-box">
-                <span id="minutes">0</span>
-                Min
+                <span id="minutes">0</span>Min
             </div>
             <div class="time-box">
-                <span id="seconds">0</span>
-                Seg
+                <span id="seconds">0</span>Seg
             </div>
         </div>
+
+        <!-- MENSAJE -->
+        <div class="mensaje-artista">
+            <h4>Mensaje del Artista</h4>
+            ¡Monterrey! 🔥<br><br>
+            Ven a divertirte a este gran evento lleno de música y energía.<br><br>
+            ⏰ <strong>Horario:</strong> 8PM a 2AM<br>
+            🍔 <strong>Comida y bebidas</strong><br>
+            🔞 <strong>Exclusivo solo para mayores de edad</strong><br>
+            🎟 <strong>Entrada gratuita con QR</strong><br><br>
+            Manda DM al 
+            <a href="https://www.instagram.com/urban.flowmx?igsh=eGY5ZXljdHllOGF1"
+               target="_blank"
+               class="link-instagram">
+               @urban.flowmx
+            </a>
+            para obtener tu acceso.<br><br>
+            ¡Nos vemos en el party! 🚀
+        </div>
+
+        <!-- MAPA -->
+        <div class="mapa">
+            <h4 style="color:gold; margin-bottom:15px;">Ubicación</h4>
+            <iframe 
+                src="https://www.google.com/maps?q=Open+Format+Restobar,+Monterrey,+Nuevo+Leon&output=embed"
+                width="100%" 
+                height="350"
+                style="border:0;"
+                loading="lazy">
+            </iframe>
+        </div>
+
     </div>
 </section>
 
@@ -219,13 +279,9 @@ footer{
 </footer>
 
 <script>
-
-/* ===== CUENTA REGRESIVA ===== */
-
-const eventDate = new Date("March 7, 2026 00:00:00").getTime();
+const eventDate = new Date("March 7, 2026 20:00:00").getTime();
 
 const countdownFunction = setInterval(function(){
-
     const now = new Date().getTime();
     const distance = eventDate - now;
 
@@ -246,9 +302,6 @@ const countdownFunction = setInterval(function(){
 
 }, 1000);
 
-
-/* ===== ANIMACIÓN SCROLL ===== */
-
 const eventos = document.querySelector(".eventos");
 
 function mostrarEvento(){
@@ -262,7 +315,6 @@ function mostrarEvento(){
 
 window.addEventListener("scroll", mostrarEvento);
 window.addEventListener("load", mostrarEvento);
-
 </script>
 
 </body>
