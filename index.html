@@ -20,18 +20,82 @@ body{
     color:white;
 }
 
-/* ===== PORTADA ===== */
+/* ===== MENU ===== */
+
+.menu-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1000;
+}
+
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
+    background:#0b0b0b;
+    padding-top:80px;
+    transition:0.4s;
+    z-index:999;
+}
+
+.side-menu a{
+    display:block;
+    padding:15px 25px;
+    color:white;
+    text-decoration:none;
+}
+
+.side-menu a:hover{
+    background:gold;
+    color:black;
+}
+
+.side-menu.active{
+    left:0;
+}
+
+/* MENSAJE MENU */
+.menu-msg{
+    margin-top:30px;
+    padding:15px 25px;
+    font-size:13px;
+    color:gold;
+    opacity:0.7;
+}
+
+/* ===== HERO ===== */
 
 .hero{
+    position:relative;
     height:100vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.85)),
-    url('portada.jpg') center/cover no-repeat;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
+    overflow:hidden;
+}
+
+.hero video{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.85));
+    z-index:-1;
 }
 
 .hero h1{
@@ -43,7 +107,6 @@ body{
 .hero p{
     margin-top:15px;
     font-size:18px;
-    opacity:0.9;
 }
 
 .scroll-btn{
@@ -53,7 +116,6 @@ body{
     border-radius:30px;
     color:gold;
     text-decoration:none;
-    transition:0.3s;
 }
 
 .scroll-btn:hover{
@@ -61,7 +123,7 @@ body{
     color:black;
 }
 
-/* ===== DATOS + REDES ===== */
+/* ===== REDES ===== */
 
 .info{
     padding:80px 20px;
@@ -69,8 +131,7 @@ body{
 }
 
 .info h2{
-    margin-bottom:20px;
-    font-size:28px;
+    margin-bottom:25px;
 }
 
 .redes a{
@@ -88,7 +149,6 @@ body{
 .redes a:hover{
     background:gold;
     color:black;
-    transform:scale(1.05);
 }
 
 /* ===== EVENTOS ===== */
@@ -99,89 +159,43 @@ body{
     background:
     linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.9)),
     url('fiesta.jpg') center/cover no-repeat;
-    opacity:0;
-    transform:translateY(100px);
-    transition:1.2s ease;
-}
-
-.eventos.visible{
-    opacity:1;
-    transform:translateY(0);
 }
 
 .evento-card{
-    background:rgba(0,0,0,0.85);
+    background:rgba(0,0,0,0.9);
     padding:40px;
     border-radius:20px;
     max-width:800px;
-    margin:0 auto;
+    margin:auto;
     box-shadow:0 0 40px rgba(255,215,0,0.2);
 }
 
 .evento-card h3{
-    font-size:30px;
     color:gold;
-    margin-bottom:15px;
 }
 
-/* ===== COUNTDOWN ===== */
-
-.countdown{
-    margin-top:25px;
+/* ICONOS */
+.plataformas{
+    margin-top:30px;
     display:flex;
     justify-content:center;
-    gap:20px;
+    gap:25px;
     flex-wrap:wrap;
 }
 
-.time-box{
-    background:black;
-    padding:20px;
-    border-radius:15px;
-    border:1px solid gold;
-    min-width:80px;
+.plataformas img{
+    width:45px;
+    transition:0.3s;
 }
 
-.time-box span{
-    display:block;
-    font-size:26px;
-    color:gold;
-    font-weight:700;
+.plataformas img:hover{
+    transform:scale(1.2);
 }
 
-/* ===== MENSAJE ARTISTA ===== */
-
+/* MENSAJE */
 .mensaje-artista{
-    margin-top:40px;
-    background:rgba(0,0,0,0.9);
-    padding:30px;
-    border-radius:15px;
-    line-height:1.7;
-}
-
-.mensaje-artista h4{
-    color:gold;
-    margin-bottom:15px;
-}
-
-.link-instagram{
-    color:#ff2e63;
-    font-weight:bold;
-    text-decoration:none;
-}
-
-.link-instagram:hover{
-    color:white;
-}
-
-/* ===== MAPA ===== */
-
-.mapa{
-    margin-top:40px;
-}
-
-.mapa iframe{
-    border-radius:15px;
+    margin-top:30px;
+    line-height:1.6;
 }
 
 /* ===== FOOTER ===== */
@@ -189,130 +203,98 @@ body{
 footer{
     padding:40px;
     text-align:center;
-    font-size:14px;
     color:#777;
-    background:#000;
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-    <h1>IVANGMX</h1>
-    <p>Artista • Productor • Beats</p>
-    <a href="#eventos" class="scroll-btn">Ver</a>
-</section>
+<!-- MENU -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-<section class="info">
-    <h2>Sígueme y Escúchame</h2>
+<div class="side-menu" id="sideMenu">
+    <a href="#">Inicio</a>
+    <a href="#eventos">Música</a>
+    <a href="#">Contacto</a>
 
-    <div class="redes">
-        <a href="https://open.spotify.com/artist/7LHNieTZsGkSF5VSYs3xtY" target="_blank">Spotify</a>
-        <a href="https://music.apple.com/mx/artist/ivangmx/1626780091" target="_blank">Apple Music</a>
-        <a href="https://music.amazon.com.mx/artists/B0B35DJS3M/ivangmx" target="_blank">Amazon Music</a>
-        <a href="https://youtube.com/@ivangmx06" target="_blank">YouTube Oficial</a>
-        <a href="https://www.youtube.com/@prodivangmx" target="_blank">YouTube Beats</a>
-        <a href="https://www.instagram.com/ivansitogg/" target="_blank">Instagram</a>
-        <a href="https://www.tiktok.com/@ivannsito_gg" target="_blank">TikTok</a>
-    </div>
-</section>
-
-<section class="eventos" id="eventos">
-    <div class="evento-card">
-
-        <h2>Lanzamiento Reciente</h2>
-        <h3>Nuevo Álbum Disponible</h3>
-
-        <p>Ya disponible en todas las plataformas.</p>
-
-        <!-- PLAYER SPOTIFY -->
-        <div style="margin-top:30px; display:flex; justify-content:center;">
-            <iframe 
-                style="border-radius:12px" 
-                src="https://open.spotify.com/embed/album/00aTA1YrMSxG7Q2vGJp0PC?utm_source=generator"
-                width="100%" 
-                height="352"
-                frameborder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- ICONOS PLATAFORMAS -->
-<div style="margin-top:30px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
-
-<a href="https://open.spotify.com/album/00aTA1YrMSxG7Q2vGJp0PC?si=BwEmdD14RnCvXLJC85MQdA" target="_blank">
-<img src="spotify.png" style="width:45px;">
-</a>
-
-<a href="https://music.apple.com/mx/album/adult-swim-single/1882749601" target="_blank">
-<img src="appelmusic.png" style="width:45px;">
-</a>
-
-<a href="https://music.amazon.com.mx/albums/B0GRBW4GGN?marketplaceId=A1AM78C64UM0Y8&musicTerritory=MX&ref=dm_sh_8I0jTcYmWzl1CKiroaiVZxPG5" target="_blank">
-<img src="amazonmuisc.png" style="width:45px;">
-</a>
-
-<a href="https://youtu.be/k5vli0WZAKI?si=epiQbA-PXyr63fWS" target="_blank">
-<img src="youtube.png" style="width:45px;">
-</a>
-
+    <p class="menu-msg">
+        🚧 Estamos trabajando en esta sección...
+    </p>
 </div>
 
-        <!-- MENSAJE -->
-        <div class="mensaje-artista">
-            Agradezco mucho el apoyo a este nuevo álbum 🔥<br><br>
-            En este proyecto se encuentran algunos avances y sonidos de lo próximo que se viene en los próximos lanzamientos.<br><br>
-            Ya disponible en todas las plataformas.
-        </div>
+<!-- HERO -->
+<section class="hero">
 
-    </div>
+<video autoplay muted loop playsinline>
+<source src="portada.mp4" type="video/mp4">
+</video>
+
+<h1>IVANGMX</h1>
+<p>Artista • Productor • Beats</p>
+<a href="#eventos" class=></a>
+
 </section>
+
+<!-- REDES -->
+<section class="info">
+<h2>Sígueme y Escúchame</h2>
+
+<div class="redes">
+<a href="https://open.spotify.com/artist/7LHNieTZsGkSF5VSYs3xtY">Spotify</a>
+<a href="https://music.apple.com/mx/artist/ivangmx/1626780091">Apple Music</a>
+<a href="https://music.amazon.com.mx/artists/B0B35DJS3M/ivangmx">Amazon Music</a>
+<a href="https://youtube.com/@ivangmx06">YouTube Oficial</a>
+<a href="https://www.youtube.com/@prodivangmx">YouTube Beats</a>
+<a href="https://www.instagram.com/ivansitogg/">Instagram</a>
+<a href="https://www.tiktok.com/@ivannsito_gg">TikTok</a>
+</div>
+
+</section>
+
+<!-- EVENTO -->
+<section class="eventos" id="eventos">
+
+<div class="evento-card">
+
+<h2>Lanzamiento Reciente</h2>
+<h3>Nuevo Álbum Disponible</h3>
+
+<p>Ya disponible en todas las plataformas.</p>
+
+<div style="margin-top:30px;">
+<iframe 
+style="border-radius:12px" 
+src="https://open.spotify.com/embed/album/00aTA1YrMSxG7Q2vGJp0PC"
+width="100%" height="352">
+</iframe>
+</div>
+
+<div class="plataformas">
+<a href="#"><img src="spotify.png"></a>
+<a href="#"><img src="appelmusic.png"></a>
+<a href="#"><img src="amazonmuisc.png"></a>
+<a href="#"><img src="youtube.png"></a>
+</div>
+
+<div class="mensaje-artista">
+Agradezco mucho el apoyo a este nuevo álbum 🔥<br><br>
+En este proyecto se encuentran algunos avances y sonidos de lo próximo que se viene en los próximos lanzamientos.<br><br>
+Ya disponible en todas las plataformas.
+</div>
+
+</div>
+</section>
+
 <footer>
-© 2026 IVANGMX - Sitio Oficial
+© 2026 IVANGMX
 </footer>
 
 <script>
-const eventDate = new Date("March 7, 2026 20:00:00").getTime();
-
-const countdownFunction = setInterval(function(){
-    const now = new Date().getTime();
-    const distance = eventDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
-
-    if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "¡EL EVENTO YA INICIÓ!";
-    }
-
-}, 1000);
-
-const eventos = document.querySelector(".eventos");
-
-function mostrarEvento(){
-    const triggerBottom = window.innerHeight * 0.85;
-    const eventoTop = eventos.getBoundingClientRect().top;
-
-    if(eventoTop < triggerBottom){
-        eventos.classList.add("visible");
-    }
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
 }
-
-window.addEventListener("scroll", mostrarEvento);
-window.addEventListener("load", mostrarEvento);
 </script>
 
 </body>
 </html>
-
